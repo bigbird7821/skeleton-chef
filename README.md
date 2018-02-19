@@ -8,10 +8,10 @@ Table of Contents for skeleton-chef
 
 
 ## Design Highlights of the project:
-* Design decisions are documented beneath the **docs** using [Lightweight Architecture Decision Records](https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records), as used by Thoughtworks.
-* The virtualbox base boxes beneath the **base\_boxes** directory must be created BEFORE starting up the chef cluster under the **applications/chef** directory.  See the [Setup instructions](#setup-instructions) for more information. 
-* To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**. 
-* **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
+* Design decisions are documented beneath the **./docs** using [Lightweight Architecture Decision Records](https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records), as used by Thoughtworks.
+* The virtualbox base boxes beneath the **./base\_boxes** directory must be created BEFORE starting up the chef cluster under the **./applications/chef** directory.  See the [Setup instructions](#setup-instructions) for more information. 
+* To understand the infrastructure-as-code start with **./applications/chef/plays/install.yml**, **./applications/chef/plays/configure.yml** and then **./applications/chef/plays/test.yml**. 
+* **./applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 
 ```
 ├── applications
@@ -84,14 +84,14 @@ Table of Contents for skeleton-chef
 ```
 
 ## Setup instructions
-* Create the vagrant base boxes beneath **base\_boxes**:
-    * Go to **base\_boxes/oel6base**
+* Create the vagrant base boxes beneath **./base\_boxes**:
+    * Go to **./base\_boxes/oel6base**
     * vagrant up
     * Run the createNewBasebox.sh as soon as the oel6base has completed without error.  This script will create a local vagrant base box called "oel6base" that subsequent "vagrant up" actions will use.  
-    * Repeat the above steps for each of the other base boxes:  **base\_boxes/oel6base-chefclient**, **base\_boxes/oel6base-chefdk**, and **base\_boxes/oel6base-chefserver**
+    * Repeat the above steps for each of the other base boxes:  **./base\_boxes/oel6base-chefclient**, **./base\_boxes/oel6base-chefdk**, and **./base\_boxes/oel6base-chefserver**
 
 * Only after the base_boxes have all been created, then 
-    * Go to **applications/chef**
+    * Go to **./applications/chef**
     * vagrant up --provision
 
 * SSH onto machine6 the ansible controller:
