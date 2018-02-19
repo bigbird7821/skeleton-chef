@@ -8,12 +8,12 @@ chef_server_download: "https://packages.chef.io/files/stable/chef-server/12.17.1
 #chef_server_download: "http://10.52.24.73/software/chef/chef-server-core-12.17.15-1.el6.x86_64.rpm"
 
 user: 
-  username: vagrant
+  username: chefdk_user
   firstname: Bob
   lastname: Jones
   email: "bob.jones@organization.com"
   password: "password1234"
 organization: 
   shortname: organization
-  fullname: "A Big Large Organization PLC"
+  fullname: "A Very Large Organization PLC"
   association_username: "{{user.username}}"

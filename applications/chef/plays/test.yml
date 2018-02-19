@@ -55,10 +55,13 @@
 
           set -x
           actual=$( echo ${result} )
-          expected="{{organization.shortname}}-validator machine3 machine4 machine5 machine6"
 
           # fail if...
-          [[ ${actual} != ${expected} ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+          [[ ! ( ${actual} =~ "{{organization.shortname}}-validator" ) ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+          [[ ! ( ${actual} =~ "machine3" ) ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+          [[ ! ( ${actual} =~ "machine4" ) ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+          [[ ! ( ${actual} =~ "machine5" ) ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+          [[ ! ( ${actual} =~ "machine6" ) ]] && echo "{{_test_case_title}} ${expected}" && exit 1
 
           # otherwise everything passed fine
           exit 0
