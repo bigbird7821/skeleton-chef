@@ -24,11 +24,8 @@ Table of Contents for skeleton-chef
 │       │   └── dev
 │       │       ├── ansible.cfg
 │       │       └── inventory
-│       │           ├── aaa-group-definitions
-│       │           ├── aaa-machine-definitions
 │       │           ├── group_vars
 │       │           ├── host_vars
-│       │           └── hosts
 │       ├── plays
 │       │   ├── configure.yml
 │       │   ├── install.yml
@@ -43,26 +40,12 @@ Table of Contents for skeleton-chef
 │       │   ├── chef-server-installer
 │       │   ├── crontab-utilities-installer
 │       │   └── dnsmasq-configurator
-│       ├── scripts
-│       │   └── doCopyOfSshKeys.sh
 │       └── Vagrantfile
 ├── base_boxes
 │   ├── oel6base
-│   │   ├── ansible
-│   │   ├── createNewBaseBox.sh
-│   │   └── Vagrantfile
 │   ├── oel6base.chefclient
-│   │   ├── ansible
-│   │   ├── createNewBaseBox.sh
-│   │   └── Vagrantfile
 │   ├── oel6base.chefdk
-│   │   ├── ansible
-│   │   ├── createNewBaseBox.sh
-│   │   └── Vagrantfile
 │   └── oel6base.chefserver
-│       ├── ansible
-│       ├── createNewBaseBox.sh
-│       └── Vagrantfile
 ├── common
 │   ├── plays
 │   └── roles
@@ -75,11 +58,6 @@ Table of Contents for skeleton-chef
 │       └── vagrant-base-cleaner
 ├── doc
 │   └── adr
-│       ├── 0001-record-architecture-decisions.md
-│       ├── 0002-separate-the-ansible-skeleton-application-from-the-common-ansible-roles-and-plays.md
-│       ├── 0003-use-ansible-inventory-directory-with-empty-group-definitions.md
-│       └── 0004-pick-up-the-http-proxy-from-the-environment-and-inject-this-via-the-proxy-role.md
-├── files.txt
 └── README.md
 ```
 
