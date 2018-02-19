@@ -8,12 +8,13 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
       * [Setup instructions](#setup-instructions)
 
 ## Highlights beneath the directory structure:
+* Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
+* The vagrant base boxes beneath **base\_boxes** must be created BEFORE doing a "vagrant up" beneath the **applications/chef** directory.  See the [Setup instructions](#setup-instructions)
+* Only after the base_boxes have all been created, then do a "vagrant up"to **applications/chef**.  See the [Setup instructions](#setup-instructions)
+* Log onto the ansible controler machine6 and configure and test the chef multi-node environment:  (1) go to ./applications/chef (2) vagrant up --provision (3) vagrant ssh machine6 (4) cd /vagrant/plays (5) ansible-playbook --diff -vv install.yml; (6) ansible-playbook --diff -vv configure.yml; (7) ansible-playbook test.yml.
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 * **applications/chef/environments** are where all the variables for the application setup are extracted
 * **applications/chef/{roles,plays}** and **common/roles** contain all the ansible configurations.  To drill from top to bottom, start with **applications/chef/plays/install.yml** and then **configure.yml**.
-* Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
-* The vagrant base boxes beneath **base\_boxes** must be created BEFORE doing spinning up the 6 node cluster beneath the **applications/chef** directory.  See the [Setup instructions](#setup-instructions)
-* Only after the base_boxes have all been created, then spin up the chef cluster beneath the **applications/chef** directory.  See the [Setup instructions](#setup-instructions)
 
 The test.yml should return without error proving that the environment has been successfully configured.
 
