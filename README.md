@@ -1,14 +1,11 @@
-# skeleton-chef
-Initial build of a chef client server architecture with multiple virtualbox vms
-
-Table of Contents
+Table of Contents for skeleton-chef
 =================
+Initial build of a chef client server architecture with multiple virtualbox vms
 
    * [skeleton-chef](#skeleton-chef)
       * [Highlights beneath the directory structure:](#highlights-beneath-the-directory-structure)
       * [The directory structure](#the-directory-structure)
       * [Setup instructions](#setup-instructions)
-
 
 ## Highlights beneath the directory structure:
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
