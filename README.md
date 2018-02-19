@@ -88,13 +88,13 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
 * Create the vagrant base boxes beneath **base\_boxes**:
     * Go to **base\_boxes/oel6base**
     * vagrant up
-    * Run the createNewBasebox.sh as soon as the oel6base has started up.  This script will create a local vagrant base box called "oel6base" that subsequent "vagrant up" actions will use.  
+    * Run the createNewBasebox.sh as soon as the oel6base has completed without error.  This script will create a local vagrant base box called "oel6base" that subsequent "vagrant up" actions will use.  
     * Repeat the above steps for each of the other base boxes:  **base\_boxes/oel6base-chefclient**, **base\_boxes/oel6base-chefdk**, and **base\_boxes/oel6base-chefserver**
-
 
 * Only after the base_boxes have all been created, then 
     * Go to **applications/chef**
     * vagrant up --provision
+
 * SSH onto machine6 the ansible controller:
     * vagrant ssh machine6
     * cd /vagrant/plays
@@ -102,4 +102,4 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
     * ansible-playbook --diff -vv configure.yml
     * ansible-playbook test.yml
 
-There should be no error in either install.yml or configure.yml.  The test.yml verifies that all chef nodes are wired successfully together
+    There should be no error in either install.yml or configure.yml.  The test.yml verifies that all chef nodes are wired successfully together
