@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-When working behind a company firewall, the http_proxy usually needs to be set in various places:  the command-line environment, the yum configuration, etc.  Given that (1) the chance that diffent proxy's may be in effect for users of this framework and (2) the http_proxy should not be hardcoded in the codebase, the following decision was made.
+When working behind a company firewall, the http_proxy usually needs to be set in various places:  the command-line environment, the yum configuration, etc.  Given that (1) the chance that different proxy's may be in effect for users of this framework and (2) the http_proxy should not be hardcoded in the codebase, the following decision was made.
 
 ## Decision
 
@@ -16,7 +16,7 @@ Extract the http_proxy from the local terminal environment, if it exists, rather
 ```
 proxy_configurator_http_proxy: "{{ lookup('env','http_proxy') | replace(' ', '') }}"
 ```
-
+The consequence of the above is as follows.
 ## Consequences
 
-The http_proxy is no longer hardcoded but picked up depending on the environment.  Much more flexible solution.
+The http_proxy is no longer hardcoded but picked up depending on the environment.
