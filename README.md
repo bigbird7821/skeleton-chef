@@ -1,6 +1,6 @@
 Table of Contents for skeleton-chef
 =================
-Initial build of a chef client server architecture with multiple virtualbox vms
+Skeleton chef client server on OEL6 with total of 6 servers in the cluster: a chef dk, a chef server, and 4 clients
 
    * [skeleton-chef](#skeleton-chef)
       * [Highlights beneath the directory structure:](#highlights-beneath-the-directory-structure)
