@@ -103,6 +103,6 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
     There should be no error in either install.yml or configure.yml.  The test.yml verifies that all chef nodes are wired successfully together
 
 ## Outstanding Work
-- [] Continue the Learn Chef Series focussing on adding the various chef testing tools and examples
-- [] Move the ruby PATH configuration into a common place and distinguish between DK and client/server paths
-- [] Fix the test.yml so that the expected is dynamically generated for the "knife client list"
+- [ ] Continue the Learn Chef Series focussing on adding the various chef testing tools and examples
+- [ ] Move the ruby PATH configuration into a common place and distinguish between DK and client/server paths
+- [ ] Fix the test.yml so that the expected is dynamically generated for the "knife client list"
