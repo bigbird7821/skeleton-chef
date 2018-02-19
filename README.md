@@ -3,17 +3,15 @@ Table of Contents for skeleton-chef
 Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a chef dk, a chef server, and 4 clients
 
    * [skeleton-chef](#skeleton-chef)
-      * [Highlights beneath the directory structure:](#highlights-beneath-the-directory-structure)
-      * [The directory structure](#the-directory-structure)
+      * [Design Highlights of the project:](#design-highlights-of-the-project)
       * [Setup instructions](#setup-instructions)
 
-## Highlights beneath the directory structure:
+## Design Highlights of the project:
 * Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
 * The virtualbox base boxes beneath the **base\_boxes** directory must be created BEFORE starting up the chef cluster under the **applications/chef** directory.  See the [Setup instructions](#setup-instructions) for more information. 
 * To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**. 
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 
-## The directory structure
 ```
 ├── applications
 │   └── chef
