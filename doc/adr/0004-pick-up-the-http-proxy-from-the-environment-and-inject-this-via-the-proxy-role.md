@@ -14,7 +14,7 @@ When working behind a company firewall, the http_proxy usually needs to be set i
 
 Extract the http_proxy from the local terminal environment, if it exists, rather than hard-code it.  The following code is an example of how this is done:
 ```
-proxy_configurator_http_proxy: "{{ lookup('env','http_proxy') | replace(' ', '') }}"
+proxy_configurator_http_proxy: "{{ lookup('env','http_proxy') }}"
 ```
 The consequence of the above is as follows.
 ## Consequences
