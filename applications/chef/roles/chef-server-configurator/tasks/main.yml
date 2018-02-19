@@ -16,7 +16,7 @@
       fi
 
       # Generate the certificates ONLY IF they don't exist
-      if [ ! -e "${HOME}/.chef/bt.pem" ]; then
+      if [ ! -e "${HOME}/.chef/{{organization.shortname}}.pem" ]; then
         echo "Configure chef server users, the organization, and ssl certificates"
         cd ${HOME}/.chef
         chef-server-ctl user-create {{user.username}} {{user.firstname}} {{user.lastname}} {{user.email}} {{user.password}} --filename ${HOME}/.chef/{{user.username}}.pem
