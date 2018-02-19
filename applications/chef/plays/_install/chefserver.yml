@@ -1,0 +1,6 @@
+---
+- name: Setup the chef server
+  hosts: chefserver
+  roles:
+    - chef-server-installer
+  

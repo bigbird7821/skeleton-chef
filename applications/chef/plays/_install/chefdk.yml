@@ -1,0 +1,5 @@
+---
+- name: Install Chef Development Kit
+  hosts: chefdk
+  roles:
+    - chef-dk-installer

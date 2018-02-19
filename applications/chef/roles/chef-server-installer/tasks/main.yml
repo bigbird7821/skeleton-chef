@@ -1,0 +1,13 @@
+---
+- name: Download the chef server rpm
+  become: true
+  get_url:
+    url: "{{chef_server_download}}"
+    dest: /tmp/chef-server-core-12.17.15-1.el6.x86_64.rpm
+    checksum: sha256:006ea8f33978ecfa6f55ac7441ebb7398b14f984ec0d1bdc40839345d1734103
+
+- name: Install chef server rpm
+  become: true
+  yum:
+    name: /tmp/chef-server-core-12.17.15-1.el6.x86_64.rpm
+    state: present

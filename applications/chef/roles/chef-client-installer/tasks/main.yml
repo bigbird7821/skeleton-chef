@@ -1,0 +1,23 @@
+---
+- name: Download the chef client installer
+  become: true
+  get_url: 
+    url: https://packages.chef.io/files/stable/chef/13.7.16/el/6/chef-13.7.16-1.el6.x86_64.rpm
+    dest: /tmp/chef-13.7.16-1.el6.x86_64.rpm
+    checksum: sha256:4aa242cf15dc0ac083c22c99b58027cea0faa52a0ee9895fe0ec9a07cd539f57
+
+- name: Install the chef client
+  become: true
+  yum: 
+    name: /tmp/chef-13.7.16-1.el6.x86_64.rpm
+    state: installed
+
+- name: Ensure that /etc/chef and /etc/chef/trusted_certs folders exists otherwise chef-client fails to start
+  become: true
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: 0755
+  with_items:
+    - /etc/chef
+    - /etc/chef/trusted_certs

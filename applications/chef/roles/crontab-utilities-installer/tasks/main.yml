@@ -1,0 +1,10 @@
+---
+- name: Install crontab utilities required by chef server
+  become: true
+  yum:
+    name: "{{item}}"
+    state: installed
+  with_items:
+    - cronie 
+    - cronie-anacron
+

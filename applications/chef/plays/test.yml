@@ -1,0 +1,64 @@
+---
+- name: Ensure that facts from all servers have been gathered before running the tests
+  hosts: all
+  gather_facts: true
+
+- name: " "
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - include_role: {name: function/ansible-test-runner}
+      vars:
+        _test_case_title: dig should resolve external dns for packages.chef.io
+        _should_debug_test: false
+        _bash_test_code: |
+          result=$( dig packages.chef.io )
+
+          set -x
+          actual=$( echo "${result}" | grep -A 1 ";; ANSWER SECTION" | sed -n "2p" | wc -l )
+
+          # fail if...
+          (( ${actual} < 1 )) && echo "{{_test_case_title}} ${expected}" && exit 1
+
+          # otherwise everything passed fine
+          exit 0
+
+    - include_role: {name: function/ansible-test-runner}
+      vars:
+        _test_case_title: dig should resove internal dns for VM hostnames
+        _should_debug_test: false
+        _bash_test_code: |
+          result=$( dig machine2 )
+
+          set -x
+          actual=$( echo "${result}" | grep -A 1 ";; ANSWER SECTION" | sed -n "2p" | wc -l )
+
+          # fail if...
+          (( ${actual} < 1 )) && echo "{{_test_case_title}} ${expected}" && exit 1
+
+          # otherwise everything passed fine
+          exit 0
+
+- name: " "
+  hosts: chefdk
+  become: true
+  gather_facts: false
+  tasks:
+    - include_role: {name: function/ansible-test-runner}
+      vars:
+        _test_case_title: chefdk 'knife client list' should return all the clients 
+        _should_debug_test: false
+        _bash_test_code: |
+          cd {{chef_repository_root_dir}}/{{chef_repository_name}}
+          result=$( knife client list )
+
+          set -x
+          actual=$( echo ${result} )
+          expected="{{organization.shortname}}-validator machine3 machine4 machine5 machine6"
+
+          # fail if...
+          [[ ${actual} != ${expected} ]] && echo "{{_test_case_title}} ${expected}" && exit 1
+
+          # otherwise everything passed fine
+          exit 0

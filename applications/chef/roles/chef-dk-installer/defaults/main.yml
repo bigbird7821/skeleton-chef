@@ -1,0 +1,5 @@
+---
+chef_repository_name: first_cookbook
+chef_repository_root_dir: /vagrant/apps
+chef_user: vagrant
+chef_group: vagrant

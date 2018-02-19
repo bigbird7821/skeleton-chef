@@ -1,0 +1,7 @@
+log_level                :info
+log_location             STDOUT
+#node_name                '{{hostvars[inventory_hostname].ansible_hostname}}'
+client_key               '/etc/chef/client.pem'
+validation_client_name   '{{organization.shortname}}-validator'
+validation_key           '/etc/chef/{{organization.shortname}}.pem'
+chef_server_url          'https://{{hostvars[groups['chefserver'] | first].ansible_hostname}}/organizations/{{organization.shortname}}'

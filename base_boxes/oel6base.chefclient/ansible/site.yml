@@ -1,0 +1,16 @@
+---
+# Keep this do-nothing task as this is required for vagrant provisioning
+# NOTE: proxy then EPEL should be setup before anything else!
+- name: site.yml | All roles
+  hosts: all
+  become: true
+  become_user: root
+  roles:
+    - proxy-configurator
+    - epel-6.8-repository-installer
+    - common-utility-installer 
+    - dnsmasq-installer
+    - chef-client-installer 
+    - vagrant-base-cleaner 
+
+

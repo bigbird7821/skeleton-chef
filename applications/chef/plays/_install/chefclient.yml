@@ -1,0 +1,5 @@
+---
+- name: Setup the chef client
+  hosts: chefclient
+  roles:
+    - chef-client-installer

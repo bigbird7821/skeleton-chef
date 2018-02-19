@@ -1,0 +1,9 @@
+---
+- name: Create client.rb to connect with the chef server
+  become: true
+  template:
+    src: etc/chef/client.rb.j2
+    dest: "/etc/chef/client.rb"
+    owner: "{{chef_user}}"
+    group: "{{chef_group}}"
+    mode: 0755

@@ -1,0 +1,35 @@
+---
+- name: Ensure that facts from all servers have been gathered before configuring the chef client servers
+  hosts: all
+  gather_facts: true
+
+- name: Configure all the chef clients
+  hosts: chefclient
+  roles:
+    - chef-client-configurator
+  tasks:
+    - name: Copy the chefserver validation private key to all clients
+      become: true
+      copy:
+        src: "{{playbook_dir}}/chefserver-private-keys/{{organization.shortname}}.pem"
+        dest: "/etc/chef/{{organization.shortname}}.pem"
+
+    - name: Copy the chefserver public key, the one from the chef-dk, to all clients
+      become: true
+      copy:
+        src: "{{playbook_dir}}/chefserver-private-keys/trusted_certs"
+        dest: "/etc/chef"
+
+    - name: Initialize connectivity between all the clients and the chef server
+      become: true
+      shell:
+        cmd: |
+          if [ ! -e "/etc/chef/client.pem" ]; then
+            echo "Initializing conectivity between chef client and server"
+            cd /etc/chef
+            chef-client
+          else
+            echo "Connectivity betwen chef client and server already setup"
+          fi
+      register: result
+      changed_when: "'Initializing conectivity between chef client and server' in result.stdout"

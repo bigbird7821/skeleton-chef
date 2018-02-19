@@ -1,0 +1,23 @@
+---
+- name: Download the Chef DK rpm
+  become: true
+  get_url:
+    url: https://packages.chef.io/files/stable/chefdk/2.4.17/el/6/chefdk-2.4.17-1.el6.x86_64.rpm
+    dest: /tmp/chefdk-2.4.17-1.el6.x86_64.rpm
+    checksum: sha256:bebbe6d1c8805108e08c4fa1999230c5b517d41725913e1c3a4289dcfd00bfaa
+
+- name: Install Chef Development Kit rpm
+  become: true
+  yum:
+    name: /tmp/chefdk-2.4.17-1.el6.x86_64.rpm
+    state: present
+
+- name: Ensure that the chefdk environment uses the embedded ruby
+  become: true
+  template:
+    force: true
+    src: "etc/profile.d/ruby.sh.j2"
+    dest: "/etc/profile.d/ruby.sh"
+    owner: "{{chef_user}}"
+    group: "{{chef_group}}"
+    mode: 0755

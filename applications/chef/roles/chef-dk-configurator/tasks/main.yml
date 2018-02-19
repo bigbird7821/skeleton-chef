@@ -1,0 +1,54 @@
+---
+- name: Create the initial chef repository ONLY IF it doesn't already exist
+  become:
+  shell:
+    cmd: |
+      mkdir -p {{chef_repository_root_dir}}
+      if [[ ! -e "{{chef_repository_root_dir}}/{{chef_repository_name}}" ]]; then
+        echo "Creating the initial chef repository"
+        chef generate app {{chef_repository_root_dir}}/{{chef_repository_name}}
+      else
+        echo "Chef repository already present"
+      fi
+  register: result
+  changed_when: "'Chef repository already present' not in result.stdout"
+
+- name: Ensure the .chef directory exists beneath the chef repository directory
+  become: true
+  file:
+    path: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef"
+    state: directory
+    owner: "{{chef_user}}"
+    group: "{{chef_group}}"
+    mode: 0755
+
+- name: Ignore the .chef directory for git
+  become: true
+  lineinfile:
+    path: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.gitignore"
+    regexp: '^\.chef'
+    line: '.chef'
+    owner: "{{chef_user}}"
+    group: "{{chef_group}}"
+    mode: 0755
+
+- name: Create knife.rb to connect with the chef server
+  become: true
+  template:
+    src: chef-repo/.chef/knife.rb.j2
+    dest: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/knife.rb"
+    owner: "{{chef_user}}"
+    group: "{{chef_group}}"
+    mode: 0755
+
+- name: Setup SSL connectivity between the chefdk and the chef server
+  become: true
+  shell:
+    cmd: |
+      set -x
+      cd {{chef_repository_root_dir}}/{{chef_repository_name}}
+      knife ssl fetch
+      knife client list
+      set +x
+  register: result
+  changed_when: "'Adding certificate for ' not in result.stdout"

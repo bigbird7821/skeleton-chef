@@ -1,0 +1,6 @@
+---
+- name: Setup DNS
+  hosts: all
+  become: true
+  roles:
+    - dnsmasq-installer

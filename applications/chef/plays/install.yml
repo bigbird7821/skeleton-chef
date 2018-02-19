@@ -1,0 +1,11 @@
+---
+- name: Install necessary software across all servers
+  hosts: all
+  become: true
+  roles:
+    - common-utility-installer
+
+- import_playbook: ./_install/chefserver.yml
+- import_playbook: ./_install/chefdk.yml
+- import_playbook: ./_install/chefclient.yml
+- import_playbook: ./_install/dnsmasq.yml

@@ -1,0 +1,33 @@
+---
+- name: Setup the chef server services if needed
+  become: true
+  become_user: root
+  shell:
+    cmd: |
+      set -x
+      # Reconfigure the chef-server ONLY IF ~/.chef directory doesn't exist
+      if [ ! -e "${HOME}/.chef" ]; then
+        echo "Creating ${HOME}/.chef directory"
+        mkdir "${HOME}/.chef"
+        echo "Configure the chef server only if it needs configured"
+        /usr/bin/chef-server-ctl reconfigure
+      else
+        echo "${HOME}/.chef already exists"
+      fi
+
+      # Generate the certificates ONLY IF they don't exist
+      if [ ! -e "${HOME}/.chef/bt.pem" ]; then
+        echo "Configure chef server users, the organization, and ssl certificates"
+        cd ${HOME}/.chef
+        chef-server-ctl user-create {{user.username}} {{user.firstname}} {{user.lastname}} {{user.email}} {{user.password}} --filename ${HOME}/.chef/{{user.username}}.pem
+        chef-server-ctl org-create {{organization.shortname}} "{{organization.fullname}}" --association_user {{organization.association_username}} --filename ${HOME}/.chef/{{organization.shortname}}.pem
+      else
+        echo "Chef server certificates already exists"
+      fi
+      set +x
+  changed_when: false
+  register: result
+
+- debug:
+    verbosity: 2
+    msg: "{{result}}"

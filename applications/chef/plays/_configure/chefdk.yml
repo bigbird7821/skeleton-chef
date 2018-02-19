@@ -1,0 +1,54 @@
+---
+- name: Configure Chef Development Kit
+  hosts: chefdk
+  roles:
+    - chef-dk-configurator
+  tasks:
+    # Copy the chefserver private keys beneath the chef repo on the chefdk server
+    - name: Copy the username.pem private key from the chef-server to the chef-dk
+      become: true
+      copy:
+        src: "{{playbook_dir}}/chefserver-private-keys/{{user.username}}.pem"
+        dest: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/{{user.username}}.pem"
+        owner: "{{chef_user}}"
+        group: "{{chef_group}}"
+        mode: 0755 
+
+    - name: Copy the organization.pem private key from the chef-server to the chef-dk
+      become: true
+      copy:
+        src: "{{playbook_dir}}/chefserver-private-keys/{{organization.shortname}}.pem"
+        dest: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/{{organization.shortname}}.pem"
+        owner: "{{chef_user}}"
+        group: "{{chef_group}}"
+        mode: 0755 
+
+    - name: Fetch the chef-server's public key and add it to the chef-dk's trusted_certs directory
+      become: true
+      shell:
+        cmd: |
+          cd {{chef_repository_root_dir}}/{{chef_repository_name}}
+          knife ssl fetch
+      register: result
+      changed_when: "'Adding certificate for' not in result.stdout"
+
+    - debug:
+        verbosity: 2
+        msg: "{{result}}"
+
+    - name: "List the chef-server public key living under the chef-dk's trusted_certs directory..."
+      become: true
+      become_user: root
+      shell: (cd {{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/trusted_certs; find . -maxdepth 1 -type f) | cut -d'/' -f2
+      changed_when: false
+      register: files_to_copy
+
+    - name: "...and then fetch a local copy"
+      become: true
+      become_user: root
+      fetch:
+        src: "{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/trusted_certs/{{ item }}"
+        dest: "{{playbook_dir}}/chefserver-private-keys/trusted_certs/{{ item }}"
+        flat: yes
+      with_items: "{{files_to_copy.stdout_lines}}"
+

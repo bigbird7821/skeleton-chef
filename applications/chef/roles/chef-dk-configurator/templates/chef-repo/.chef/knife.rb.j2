@@ -1,0 +1,9 @@
+log_level                :info
+log_location             STDOUT
+node_name                '{{user.username}}'
+client_key               '{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/{{user.username}}.pem'
+validation_client_name   '{{organization.shortname}}-validator'
+validation_key           '{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/{{organization.shortname}}.pem'
+chef_server_url          'https://{{hostvars[groups['chefserver'] | first].ansible_hostname}}/organizations/{{organization.shortname}}'
+syntax_check_cache_path  '{{chef_repository_root_dir}}/{{chef_repository_name}}/.chef/syntax_check_cache'
+cookbook_path [ '{{chef_repository_root_dir}}/{{chef_repository_name}}' ]

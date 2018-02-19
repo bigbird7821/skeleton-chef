@@ -1,0 +1,19 @@
+chef_repository_name: first_cookbook
+chef_repository_root_dir: /vagrant/apps
+chef_user: vagrant
+chef_group: vagrant
+
+# NOTE: if the download fails from chef, you may need to download a local copy
+chef_server_download: "https://packages.chef.io/files/stable/chef-server/12.17.15/el/6/chef-server-core-12.17.15-1.el6.x86_64.rpm"
+#chef_server_download: "http://10.52.24.73/software/chef/chef-server-core-12.17.15-1.el6.x86_64.rpm"
+
+user: 
+  username: vagrant
+  firstname: Bob
+  lastname: Jones
+  email: "bob.jones@organization.com"
+  password: "password1234"
+organization: 
+  shortname: organization
+  fullname: "A Big Large Organization PLC"
+  association_username: "{{user.username}}"
