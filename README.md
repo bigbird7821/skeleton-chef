@@ -8,7 +8,7 @@ Table of Contents for skeleton-chef
 
 
 ## Design Highlights of the project:
-* Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
+* Design decisions are documented beneath the **docs** using [Lightweight Architecture Decision Records](https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records), as used by Thoughtworks.
 * The virtualbox base boxes beneath the **base\_boxes** directory must be created BEFORE starting up the chef cluster under the **applications/chef** directory.  See the [Setup instructions](#setup-instructions) for more information. 
 * To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**. 
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
