@@ -1,10 +1,11 @@
 Table of Contents for skeleton-chef
 =================
-Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a chef dk, a chef server, and 4 clients
 
-   * [skeleton-chef](#skeleton-chef)
+   * [Table of Contents for skeleton-chef](#table-of-contents-for-skeleton-chef)
       * [Design Highlights of the project:](#design-highlights-of-the-project)
       * [Setup instructions](#setup-instructions)
+      * [Outstanding Work](#outstanding-work)
+
 
 ## Design Highlights of the project:
 * Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
