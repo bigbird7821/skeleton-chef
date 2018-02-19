@@ -9,8 +9,8 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
 
 ## Highlights beneath the directory structure:
 * Design decisions are documented using the Lightweight Architecture Decision Records, as used by Thoughtworks, beneath the **docs**
-* The virtualbox base boxes beneath the **base\_boxes** directory must be created BEFORE starting up the chef cluster under the **applications/chef** directory.  See the [Setup instructions](#setup-instructions) details on how.
-* To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**.  **applications/chef/environments** are where all the variables for the application setup are extracted.  **applications/chef/{roles,plays}** and **common/roles** contain all the ansible configurations.  
+* The virtualbox base boxes beneath the **base\_boxes** directory must be created BEFORE starting up the chef cluster under the **applications/chef** directory.  See the [Setup instructions](#setup-instructions) for more information. 
+* To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**. 
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 
 The test.yml should return without error proving that the environment has been successfully configured.
