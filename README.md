@@ -13,8 +13,6 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
 * To understand the infrastructure-as-code start with **applications/chef/plays/install.yml**, **applications/chef/plays/configure.yml** and then **applications/chef/plays/test.yml**. 
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 
-The test.yml should return without error proving that the environment has been successfully configured.
-
 ## The directory structure
 ```
 ├── applications
