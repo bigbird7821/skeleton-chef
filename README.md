@@ -1,6 +1,6 @@
 Table of Contents for skeleton-chef
 =================
-Skeleton chef client server on OEL6 with total of 6 servers in the cluster: a chef dk, a chef server, and 4 clients
+Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a chef dk, a chef server, and 4 clients
 
    * [skeleton-chef](#skeleton-chef)
       * [Highlights beneath the directory structure:](#highlights-beneath-the-directory-structure)
