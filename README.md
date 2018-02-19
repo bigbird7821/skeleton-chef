@@ -1,6 +1,15 @@
 # skeleton-chef
 Initial build of a chef client server architecture with multiple virtualbox vms
 
+Table of Contents
+=================
+
+   * [skeleton-chef](#skeleton-chef)
+      * [Highlights beneath the directory structure:](#highlights-beneath-the-directory-structure)
+      * [The directory structure](#the-directory-structure)
+      * [Setup instructions](#setup-instructions)
+
+
 ## Highlights beneath the directory structure:
 * **applications/chef/apps/first_cookbook** is the chef cookbook shared amongst all the nodes
 * **applications/chef/environments** are where all the variables for the application setup are extracted
@@ -83,3 +92,23 @@ The test.yml should return without error proving that the environment has been s
 ├── files.txt
 └── README.md
 ```
+
+## Setup instructions
+* Create the vagrant base boxes beneath **base\_boxes**:
+    * Go to **base\_boxes/oel6base**
+    * vagrant up
+    * Run the createNewBasebox.sh as soon as the oel6base has started up.  This script will create a local vagrant base box called "oel6base" that subsequent "vagrant up" actions will use.  
+    * Repeat the above steps for each of the other base boxes:  **base\_boxes/oel6base-chefclient**, **base\_boxes/oel6base-chefdk**, and **base\_boxes/oel6base-chefserver**
+
+
+* Only after the base_boxes have all been created, then 
+    * Go to **applications/chef**
+    * vagrant up --provision
+* SSH onto machine6 the ansible controller:
+    * vagrant ssh machine6
+    * cd /vagrant/plays
+    * ansible-playbook --diff -vv install.yml
+    * ansible-playbook --diff -vv configure.yml
+    * ansible-playbook test.yml
+
+There should be no error in either install.yml or configure.yml.  The test.yml verifies that all chef nodes are wired successfully together
