@@ -1,7 +1,7 @@
 # skeleton-chef
 Initial build of a chef client server architecture with multiple virtualbox vms
 
-Highlights beneath the directory structure:
+# Highlights beneath the directory structure:
 * applications/chef/apps/first_cookbook is the chef cookbook shared amongst all the nodes
 * applications/chef/environments are where all the variables for the application setup are extracted
 * applications/chef/{roles,plays} and common/roles contain all the ansible configurations.  To drill from top to bottom, start with applications/chef/plays/install.yml and then configure.yml.
@@ -12,7 +12,8 @@ Highlights beneath the directory structure:
 
 The test.yml should return without error proving that the environment has been successfully configured.
 
-The directory structure
+# The directory structure
+```
 ├── applications
 │   └── chef
 │       ├── apps
@@ -81,3 +82,4 @@ The directory structure
 │       └── 0004-pick-up-the-http-proxy-from-the-environment-and-inject-this-via-the-proxy-role.md
 ├── files.txt
 └── README.md
+```
