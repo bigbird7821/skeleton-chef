@@ -74,7 +74,6 @@ Skeleton chef client-server cluster on OEL6 with 6 servers in the cluster: a che
 │       │   └── ansible-test-runner
 │       ├── proxy-configurator
 │       └── vagrant-base-cleaner
-├── directories.txt
 ├── doc
 │   └── adr
 │       ├── 0001-record-architecture-decisions.md
