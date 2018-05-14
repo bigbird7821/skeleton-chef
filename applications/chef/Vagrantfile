@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
             $ipAddress = "#{thisSubnet}.#{20+machine_id}"
             $hostName = "machine#{machine_id}"
 
-            # TODO: Replace the OEL6 machine reference to Ubuntu instead
+            # TODO: Replace the OEL6 machine reference to Ubuntu instead GAVIN
             # Ensure that all machines from 3 on are oel6base/chefclient VMs
             case machine_id
             when 3..thisNumberOfVms
