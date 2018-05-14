@@ -87,3 +87,4 @@ Table of Contents for skeleton-chef
 - [ ] Fix the test.yml so that the expected is dynamically generated for the "knife client list"
 - [ ] Create an issue list for this repository
 - [ ] Create a project board for managing the roadmap
+- [ ] Dummy task
