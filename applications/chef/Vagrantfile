@@ -5,6 +5,7 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+# TODO: Fix the indenting
 Vagrant.configure("2") do |config|
     # Stop the evil VirtualBox Guest Addition auto update
     config.vbguest.auto_update = false
@@ -26,7 +27,7 @@ Vagrant.configure("2") do |config|
             $ipAddress = "#{thisSubnet}.#{20+machine_id}"
             $hostName = "machine#{machine_id}"
 
-            # TODO: Replace the OEL6 machine reference to Ubuntu instead GAVIN
+            # TODO: Replace the OEL6 machine reference to Ubuntu instead
             # Ensure that all machines from 3 on are oel6base/chefclient VMs
             case machine_id
             when 3..thisNumberOfVms
