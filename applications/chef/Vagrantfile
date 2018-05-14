@@ -5,6 +5,7 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+# TODO: Fix the indenting
 Vagrant.configure("2") do |config|
     # Stop the evil VirtualBox Guest Addition auto update
     config.vbguest.auto_update = false
